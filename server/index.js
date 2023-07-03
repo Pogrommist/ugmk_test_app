@@ -1,9 +1,14 @@
 const express = require('express');
 const csv = require('csv-parser');
 const fs = require('fs');
+const cors = require('cors');
+
 const { groupByMonth } = require('./utils/chat-data-transformer.js')
+
 const port = 3001
 const app = express()
+
+app.use(cors());
 
 let products = [];
 
@@ -31,4 +36,5 @@ app.get('/products', (req, res) => {
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })
+
 
