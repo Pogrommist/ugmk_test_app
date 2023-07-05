@@ -1,13 +1,27 @@
 .homepage-container {
-  margin: 5rem;
+  margin-top: 2rem;
   max-width: 128rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
+}
+.homepage-filter {
+  padding: 1rem 2rem;
+  display: flex;
   align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  width: 100%;
 }
 
-.homepage__select {
-  align-self: flex-end;
+.homepage-chart {
+  margin-top: 2rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-sizing: initial;
 }

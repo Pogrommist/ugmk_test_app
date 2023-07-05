@@ -2,12 +2,13 @@
 const { format, parse } = require('date-fns'); 
 const { ru } = require('date-fns/locale');
 const { groupBy, sumBy } = require('lodash');
+const { monthOrder } = require('./constants');
 
 const groupByMonth = data => {
   const grouped = groupBy(data, item => {
     if (item.date !== null && item.date !== '') {
       const parsed = parse(item.date, 'dd/MM/yyyy', new Date(), { locale: ru })
-      item.month = new Date(parsed).getMonth()
+      item.month = new Date(parsed).getMonth() + 1
       return format(parsed, 'LLLL', { locale: ru })
     }
   })
@@ -44,27 +45,9 @@ const groupByMonth = data => {
 
 const sortByMonth = (data) => {
   return Object.fromEntries(
-    Object.entries(data).sort(([firstVal], [secondVal]) => {
-      const monthOrder = {
-        январь: 0,
-        февраль: 1,
-        март: 2,
-        апрель: 3,
-        май: 4,
-        июнь: 5,
-        июль: 6,
-        август: 7,
-        сентябрь: 8,
-        октябрь: 9,
-        ноябрь: 10,
-        декабрь: 11
-      };
-  
-      return monthOrder[firstVal] - monthOrder[secondVal];
-    })
+    Object.entries(data).sort(([firstVal], [secondVal]) => monthOrder[firstVal] - monthOrder[secondVal])
   )
 }
-
 
 module.exports = {
   groupByMonth

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { COLORS } from '../../shared/constants';
 
 const HomeChart = ({ data, handleClick, filter }) => {
   const transformedData = Object.entries(data).map(([month, productData]) => ({
@@ -15,39 +16,39 @@ const HomeChart = ({ data, handleClick, filter }) => {
       case 'all': 
         return (
           <>
-            <Bar dataKey="factory_1Products_all" fill="#FF0000" name='Фабрика 1' />
-            <Bar dataKey="factory_2Products_all" fill="#0000FF" name='Фабрика 2'/>
+            <Bar dataKey="factory_1Products_all" fill={COLORS.RED} name='Фабрика 1' onClick={handleClick} />
+            <Bar dataKey="factory_2Products_all" fill={COLORS.BLUE} name='Фабрика 2' onClick={handleClick} />
           </>
         )
       case 'product1':
         return (
           <>
-            <Bar dataKey="factory_1Products1" fill="#FF0000" name='Фабрика 1' />
-            <Bar dataKey="factory_2Products1" fill="#0000FF" name='Фабрика 2'/>
+            <Bar dataKey="factory_1Products1" fill={COLORS.RED} name='Фабрика 1' onClick={handleClick} />
+            <Bar dataKey="factory_2Products1" fill={COLORS.BLUE} name='Фабрика 2' onClick={handleClick} />
           </>
         )
       case 'product2':
         return (
           <>
-            <Bar dataKey="factory_1Products2" fill="#FF0000" name='Фабрика 1' />
-            <Bar dataKey="factory_2Products2" fill="#0000FF" name='Фабрика 2'/>
+            <Bar dataKey="factory_1Products2" fill={COLORS.RED} name='Фабрика 1' onClick={handleClick} />
+            <Bar dataKey="factory_2Products2" fill={COLORS.BLUE} name='Фабрика 2' onClick={handleClick} />
           </>
         )
         default:
           return (
             <>
-              <Bar dataKey="factory_1Products_all" fill="#FF0000" name='Фабрика 1' />
-              <Bar dataKey="factory_2Products_all" fill="#FF0000" name='Фабрика 1'/>
+              <Bar dataKey="factory_1Products_all" fill={COLORS.RED} name='Фабрика 1' onClick={handleClick} />
+              <Bar dataKey="factory_2Products_all" fill={COLORS.BLUE} name='Фабрика 1' onClick={handleClick} />
             </>
           )
     }
   }
 
   return (
-      <BarChart width={width} height={height} data={transformedData} onClick={handleClick}>
+      <BarChart width={width} height={height} data={transformedData}>
         <XAxis dataKey="month" />
         <YAxis />
-        <Tooltip />
+        <Tooltip cursor={false} formatter={(value) => `${value}, тонн`} />
         <Legend />
         {
           Bars()
