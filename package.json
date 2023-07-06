@@ -21,10 +21,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-fronend\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-fronend": "react-scripts start",
+    "start-backend": "node server/index.js",
+    "dockerize": "docker build -t ugmk_test_app .",
+    "start-container": "sh -c ./run-container.sh"
   },
   "eslintConfig": {
     "extends": [
@@ -43,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }

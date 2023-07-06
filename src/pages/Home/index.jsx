@@ -11,7 +11,7 @@ import './style.css'
 import { factoryIds } from "../../shared/constants"
 
 const selectOptions = [
-  { value: 'all', label: 'Все' },
+  { value: 'all', label: 'Все продукты' },
   { value: 'product1', label: 'Продукт 1' },
   { value: 'product2', label: 'Продукт 2' }
 ]
